@@ -1,6 +1,21 @@
 #pragma once
 //все варианты методов для вариантов 9 и 10
 
+struct Method
+{
+	template < typename T>
+	function_table<int, T, T> (*function)(int n, int dt, T(*func)(T x, T y));
+	string name;
+	template < typename T>
+	Method(string name1, function_table<double, T, T> (func)(int n, T dt, T(*func) (T x, T y)))
+	{
+		function = func;
+		name = name1;
+	}
+};
+
+
+
 template < typename T>
 function_table<int, T, T> aver_speed(int n, int dt, T(*func)(T x, T y))
 {
@@ -44,7 +59,7 @@ function_table<double, T, T> Biman(int n, T dt, T(*func) (T x, T y))
 	T x = alph, v = bett;
 	function_table<double, T, T> result;
 	result.add_vals(t, x, v);
-	T a=0, a_prev, a_next = 0;
+	T a = 0, a_prev, a_next = 0;
 	for (int i = 1; i <= n; i++)
 	{
 		a_prev = a;
@@ -63,7 +78,7 @@ template < typename T>
 function_table<double, T, T> pred_corr(int n, T dt, T(*func) (T x, T y))
 {
 	double t = 0;
-	T x_prev, x = alph, x_next = alph, v=0, v_next = bett;
+	T x_prev, x = alph, x_next = alph, v = 0, v_next = bett;
 	function_table<double, T, T> result;
 	result.add_vals(t, x, v);
 	T  a_prev, a, a_next = 0;
@@ -77,7 +92,7 @@ function_table<double, T, T> pred_corr(int n, T dt, T(*func) (T x, T y))
 		x_next = x_prev + 2 * v*dt;//predictor
 		a_next = func(x_next, v);
 		v_next += (a_next + a)*dt / 2.0;
-		x_next = x + dt*(v_next + v) / 2.0;
+		x_next = x + dt * (v_next + v) / 2.0;
 		t += dt;
 		result.add_vals(t, x, v);
 	}

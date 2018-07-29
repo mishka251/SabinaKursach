@@ -11,4 +11,4 @@ T a2(T x, T v)
 	return w1 * w1*x;
 }
 template < typename T>
-auto funcrions = { &a1<T>, &a2<T> };
+auto functions = { &a1<T>, &a2<T> };
