@@ -20,6 +20,13 @@
 
 using namespace std;
 
+#define OUTTYPE File
+#if(OUTTYPE==File)
+#define out cout
+#else
+#define out fout
+#endif
+
 template<typename T>
 void step1(int n, T dt)//часть 1 - решение обоих уравнений тремя методами
 {
@@ -28,14 +35,40 @@ void step1(int n, T dt)//часть 1 - решение обоих уравнений тремя методами
 		for (auto it = methods<T>.begin(); it != methods<T>.end(); it++)//по всем методам
 		{
 			auto table = (*it)(n, dt, (*ur));
-			cout << "    " << endl;
-			cout << table.info() << endl;
-			cout << "        " << endl;
+			out << "    " << endl;
+			out << table.info() << endl;
+			out << "        " << endl;
 		}
 	}
 }
 
+template<typename T>
+void foo(int n, T dt)
+{
+	auto ur = *functions<T>.end();//2-е уравнение
+	auto method = methods<T>.begin();//1-й метод, как раз нужный
 
+	auto table = (*method)(n, dt, ur);
+	out << "    " << endl;
+	out << table.info() << endl;
+	out << "        " << endl;
+}
+
+auto dt_arr = { 1E-3, 1E-6, 1E-8 };
+
+void step2(int n)//часть 2 - решение 2-го уравнений 1-м методом для разных dt
+{
+	for (auto it = dt_arr.begin(); it!=dt_arr.end(); it++)
+	{
+		double dt = *it;
+		out << "float" << endl;
+		foo<float>(n, dt);
+		out << "double" << endl;
+		foo<double>(n, dt);
+	}
+}
+
+#if DEBUG
 template<typename T>
 void foo(T x)
 {
@@ -49,11 +82,11 @@ void foo(T x)
 
 	//	}
 }
+#endif
 
 
 
-template<typename T>
-auto dt_arr = { (T)1E-3, (T)1E-6, (T)1E-8 };
+
 
 
 int main()
@@ -62,9 +95,10 @@ int main()
 	cout << "User " << UserName << endl;
 
 	step1(10, 1E-3);
+	out << endl << "step 2" << endl;
+	step2(10);
 
-
-#//if DEBUG
+#if DEBUG
 	auto f = methods<double>;
 	for (auto it = f.begin(); it != f.end(); it++)
 	{
@@ -73,7 +107,7 @@ int main()
 	auto table1 = Eiler_Kramer<double>(100, 1E-3, &a1);
 	foo<double>(1);
 	cout << table1.info() << endl;
-//#endif
+#endif
 	
 
 	system("pause");

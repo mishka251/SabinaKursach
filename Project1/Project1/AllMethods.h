@@ -3,7 +3,7 @@
 //все варианты методов для вариантов 9 и 10
 
 template < typename T>
-function_table<double, T, T> aver_speed(int n, double dt, T(*func)(T x, T y))
+function_table<double, T, T> aver_speed(int n, T dt, T(*func)(T x, T y))
 {
 	T vn = bett, xn = alph;
 
