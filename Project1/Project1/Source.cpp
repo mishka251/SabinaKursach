@@ -101,9 +101,13 @@ void foo(T x)
 
 }
 
+template<typename T>
+auto met = { &Eiler_Kramer<T>, pred_corr<T> };
 
 int main()
 {
+
+
 
 	auto table1 = Eiler_Kramer<double>(1, 0, 100, 1E-3, &a1);
 	cout << table1.info() << endl;
