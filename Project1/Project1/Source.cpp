@@ -10,7 +10,7 @@
 
 #define DEBUG false
 
-#define ELINA
+#define SABINA
 
 #ifdef SABINA
 #include "SabinaMethods.h"

@@ -1,34 +1,21 @@
 #pragma once
+#include<string>
 //все варианты методов для вариантов 9 и 10
 
-struct Method
-{
-	template < typename T>
-	function_table<int, T, T> (*function)(int n, int dt, T(*func)(T x, T y));
-	string name;
-	template < typename T>
-	Method(string name1, function_table<double, T, T> (func)(int n, T dt, T(*func) (T x, T y)))
-	{
-		function = func;
-		name = name1;
-	}
-};
-
-
-
 template < typename T>
-function_table<int, T, T> aver_speed(int n, int dt, T(*func)(T x, T y))
+function_table<double, T, T> aver_speed(int n, double dt, T(*func)(T x, T y))
 {
 	T vn = bett, xn = alph;
 
-	function_table<int, T, T> result;
+	function_table<double, T, T> result;
 	result.add_vals(0, xn, vn);
-
+	double t = 0;
 	for (int i = 0; i < n; i++)
 	{
+		t += dt;
 		vn += alph * func(xn, vn);
 		xn = xn * vn*dt + (func(xn, vn)*dt*dt) / 2.0;
-		result.add_vals(i, xn, vn);
+		result.add_vals(t, xn, vn);
 	}
 	return result;
 }
