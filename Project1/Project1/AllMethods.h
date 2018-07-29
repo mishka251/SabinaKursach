@@ -57,7 +57,6 @@ function_table<double, T, T> Biman(int n, T dt, T(*func) (T x, T y))
 		v += dt * (2 * a_next + 5 * a - a_prev) / 6.0;
 		result.add_vals(t, x, v);
 	}
-
 	return result;
 }
 
