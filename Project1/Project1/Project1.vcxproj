@@ -118,8 +118,11 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AllMethods.h" />
+    <ClInclude Include="ElinaMethods.h" />
     <ClInclude Include="functions.h" />
     <ClInclude Include="result_info.h" />
+    <ClInclude Include="SabinaMethods.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

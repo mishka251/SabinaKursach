@@ -9,6 +9,8 @@
 
 using namespace std;
 
+//класс таблица функции для хранения и вывода результата.
+//момент времени, кооордината, скорость
 template<typename t_type, typename x_type, typename v_type>
 
 class function_table
