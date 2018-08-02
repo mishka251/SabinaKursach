@@ -53,13 +53,18 @@ public:
 		return ss.str();
 	}
 
-	//static function_table create_table(x_type(*y)(x_type x), t_type a, t_type b, t_type dt)
-	//{
-	//	function_table table;
-	//	for (arg i = a; a <= b; a += dt)
-	//		table.add_vals(i, y(i));
-
-	//	return table;
-	//}
-
+	friend ostream operator<<(ostream& ost, const function_table &table);
+	friend ofstream operator<<(ofstream& ost, const function_table &table);
 };
+template<typename t_type, typename x_type, typename v_type>
+ostream operator<<(ostream & ost, const function_table<t_type, x_type, v_type>  & table)
+{
+	ost << table.info() << endl;
+	return ost;
+}
+template<typename t_type, typename x_type, typename v_type>
+ofstream operator<<(ofstream & ost, const function_table<t_type, x_type, v_type> & table)
+{
+	ost << table.info() << endl;
+	return ost;
+}
