@@ -1,41 +1,38 @@
 ﻿  Source.cpp
-c:\users\михаил\downloads\project1\project1\project1\source.cpp(124): warning C4305: аргумент: усечение из "double" в "float"
 c:\users\михаил\downloads\project1\project1\project1\functions.h(7): warning C4244: return: преобразование "double" в "float", возможна потеря данных
-  c:\users\михаил\downloads\project1\project1\project1\source.cpp(144): note: выполняется компиляция ссылки на экземпляр шаблон функции "T a1<T>(T,T)"
+  c:\users\михаил\downloads\project1\project1\project1\source.cpp(173): note: выполняется компиляция ссылки на экземпляр шаблон функции "T a1<T>(T,T)"
           with
           [
               T=float
           ]
-  c:\users\михаил\downloads\project1\project1\project1\source.cpp(98): note: выполняется компиляция ссылки на шаблон переменной "std::function<float (float,float)> f1<float>"
+  c:\users\михаил\downloads\project1\project1\project1\source.cpp(140): note: выполняется компиляция ссылки на шаблон переменной "std::function<float (float,float)> f1<float>"
 c:\users\михаил\downloads\project1\project1\project1\functions.h(13): warning C4244: return: преобразование "double" в "float", возможна потеря данных
-  c:\users\михаил\downloads\project1\project1\project1\source.cpp(144): note: выполняется компиляция ссылки на экземпляр шаблон функции "T a2<T>(T,T)"
+  c:\users\михаил\downloads\project1\project1\project1\source.cpp(173): note: выполняется компиляция ссылки на экземпляр шаблон функции "T a2<T>(T,T)"
           with
           [
               T=float
           ]
-  c:\users\михаил\downloads\project1\project1\project1\source.cpp(99): note: выполняется компиляция ссылки на шаблон переменной "std::function<float (float,float)> f2<float>"
+  c:\users\михаил\downloads\project1\project1\project1\source.cpp(141): note: выполняется компиляция ссылки на шаблон переменной "std::function<float (float,float)> f2<float>"
 c:\users\михаил\downloads\project1\project1\project1\allmethods.h(56): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
-  c:\users\михаил\downloads\project1\project1\project1\source.cpp(144): note: выполняется компиляция ссылки на экземпляр шаблон функции "function_table<double,float,float> Biman<T>(int,T,std::function<float (float,float)>)"
+  c:\users\михаил\downloads\project1\project1\project1\struct_method.h(20): note: выполняется компиляция ссылки на экземпляр шаблон функции "function_table<double,T,T> Biman<T>(int,T,std::function<float (float,float)>)"
           with
           [
               T=float
           ]
-  c:\users\михаил\downloads\project1\project1\project1\source.cpp(73): note: выполняется компиляция ссылки на шаблон переменной "std::function<function_table<double,float,float> (int,T,std::function<float (float,float)>)> methods<float>[3]"
-          with
-          [
-              T=float
-          ]
-  c:\users\михаил\downloads\project1\project1\project1\source.cpp(90): note: выполняется компиляция ссылки на экземпляр шаблон функции "void foo<float>(int,T)"
-          with
-          [
-              T=float
-          ]
+  c:\users\михаил\downloads\project1\project1\project1\source.cpp(146): note: выполняется компиляция ссылки на шаблон переменной "Method<float> AllMethods<float>[5]"
 c:\users\михаил\downloads\project1\project1\project1\allmethods.h(58): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
 c:\users\михаил\downloads\project1\project1\project1\allmethods.h(81): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
-  c:\users\михаил\downloads\project1\project1\project1\source.cpp(144): note: выполняется компиляция ссылки на экземпляр шаблон функции "function_table<double,float,float> pred_corr<T>(int,T,std::function<float (float,float)>)"
+  c:\users\михаил\downloads\project1\project1\project1\struct_method.h(21): note: выполняется компиляция ссылки на экземпляр шаблон функции "function_table<double,T,T> pred_corr<T>(int,T,std::function<float (float,float)>)"
           with
           [
               T=float
           ]
 c:\users\михаил\downloads\project1\project1\project1\allmethods.h(82): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+c:\users\михаил\downloads\project1\project1\project1\allmethods.h(17): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
+  c:\users\михаил\downloads\project1\project1\project1\struct_method.h(23): note: выполняется компиляция ссылки на экземпляр шаблон функции "function_table<double,T,T> aver_speed<T>(int,T,std::function<float (float,float)>)"
+          with
+          [
+              T=float
+          ]
+c:\users\михаил\downloads\project1\project1\project1\allmethods.h(18): warning C4244: =: преобразование "double" в "float", возможна потеря данных
   Project1.vcxproj -> C:\Users\Михаил\Downloads\Project1\Project1\Debug\Project1.exe

@@ -123,6 +123,7 @@
     <ClInclude Include="functions.h" />
     <ClInclude Include="result_info.h" />
     <ClInclude Include="SabinaMethods.h" />
+    <ClInclude Include="struct_method.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -90,7 +90,7 @@ template < typename T>
 function_table<double, T, T> Verle(int n, T dt, function<T(T, T)> f)
 {
 	double t = 0;
-	T x_prev, x, x_next = alph, v = bett;
+	T x_prev, x=0, x_next = alph, v = bett;
 	function_table<double, T, T> result;
 	result.add_vals(t, x, v);
 	for (int i = 1; i <= n; i++)
