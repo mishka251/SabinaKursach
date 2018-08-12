@@ -133,6 +133,14 @@ void step2(int n)//часть 2 - решение 2-го уравнений 1-м методом для разных dt
 	}
 }
 
+template<typename T>
+void fuckingMagic()
+{
+	f1<T>(1, 1);
+	f2<T>(1, 1);
+	AllMethods<T>;
+}
+
 //без этой фигни не работает, не знаю почему
 void initFunctions()
 {
@@ -153,7 +161,9 @@ int main()
 #if DEBUG
 	auto start = chrono::steady_clock::now();
 #endif
-	initFunctions();
+	//initFunctions();
+	fuckingMagic<float>();
+	fuckingMagic<double>();
 	int n = 1000;
 	cout << "Variant " << VARIANT << endl;
 	cout << "User " << UserName << endl;
