@@ -3,19 +3,25 @@
 #include<functional>
 //все варианты методов для вариантов 9 и 10
 
+
+
+//метод средних скоростей = метод полушага
 template < typename T>
 function_table<double, T, T> aver_speed(int n, T dt, function<T(T, T)> f)
 {
+	double t = 0;
 	T vn = bett, xn = alph;
-
 	function_table<double, T, T> result;
 	result.add_vals(0, xn, vn);
-	double t = 0;
-	for (int i = 0; i < n; i++)
+
+
+	vn += f(xn, vn)*dt / 2.0;
+
+	for (int i = 1; i <= n; i++)
 	{
 		t += dt;
-		vn += alph * f(xn, vn);
-		xn = xn * vn*dt + (f(xn, vn)*dt*dt) / 2.0;
+		vn += dt * f(xn, vn);
+		xn += vn * dt;
 		result.add_vals(t, xn, vn);
 	}
 	return result;
@@ -25,16 +31,16 @@ template < typename T>
 function_table<double, T, T> Eiler_Kramer(int n, T dt, function<T(T, T)> f)
 {
 	double t = 0;
-	T x = alph, v = bett;
+	T xn = alph, vn = bett;
 	function_table<double, T, T> result;
-	result.add_vals(t, x, v);
+	result.add_vals(t, xn, vn);
 
 	for (int i = 1; i <= n; i++)
 	{
 		t += dt;
-		v += dt * f(x, v);
-		x += dt * v;
-		result.add_vals(t, x, v);
+		vn += dt * f(xn, vn);
+		xn += dt * vn;
+		result.add_vals(t, xn, vn);
 	}
 
 	return result;
@@ -47,7 +53,9 @@ function_table<double, T, T> Biman(int n, T dt, function<T(T, T)> f)
 	T x = alph, v = bett;
 	function_table<double, T, T> result;
 	result.add_vals(t, x, v);
-	T a = 0, a_prev, a_next = 0;
+
+	T  a_prev = 0, a = 0, a_next = 0;
+
 	for (int i = 1; i <= n; i++)
 	{
 		a_prev = a;
@@ -65,21 +73,30 @@ template < typename T>
 function_table<double, T, T> pred_corr(int n, T dt, function<T(T, T)> f)
 {
 	double t = 0;
-	T x_prev, x = alph, x_next = alph, v = 0, v_next = bett;
+	T x_prev, x = alph, x_next = alph + bett * dt, v = bett, v_next = bett;
 	function_table<double, T, T> result;
 	result.add_vals(t, x, v);
-	T  a_prev, a, a_next = 0;
+	T  a, a_next;
 	for (int i = 1; i <= n; i++)
 	{
-		a = a_next;
+		//a = a_next;
 		x_prev = x;
 		x = x_next;
 		v = v_next;
-		a_prev = a;
-		x_next = x_prev + 2 * v*dt;//predictor
-		a_next = f(x_next, v);
-		v_next += (a_next + a)*dt / 2.0;
+
+
+		a = f(x, v);
+		T pred;
+		do
+		{
+		 pred = x_prev + 2 * v*dt;//predictor
+		a_next = f(pred, v);
+		v_next = v+ (a_next + a)*dt / 2.0;
 		x_next = x + dt * (v_next + v) / 2.0;
+		} while (abs(x_next - pred) > dt);
+
+
+
 		t += dt;
 		result.add_vals(t, x, v);
 	}
@@ -90,7 +107,7 @@ template < typename T>
 function_table<double, T, T> Verle(int n, T dt, function<T(T, T)> f)
 {
 	double t = 0;
-	T x_prev, x=0, x_next = alph, v = bett;
+	T x_prev, x = alph, x_next = alph + bett * dt, v = bett;
 	function_table<double, T, T> result;
 	result.add_vals(t, x, v);
 	for (int i = 1; i <= n; i++)

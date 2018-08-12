@@ -30,43 +30,74 @@ using namespace std;
 
 
 template<typename T>
+ void SolveAndPrint(int n, T dt, int ur_ind, Method<T>& method )
+{
+#if (OUTTYPE == File)
+
+	string s = "step1_ur" + std::to_string(ur_ind + 1) + "method_" + method.name + ".txt";
+	ofstream out;
+	out.open(s);
+
+#else
+	ostream &out = cout;
+#endif
+	auto ur = functions<T>[ur_ind];
+	auto start = chrono::steady_clock::now();
+	auto table = method.method(n, dt, ur);
+	auto end = chrono::steady_clock::now();
+	out << "Уравнение " << ur_ind << endl;
+	out << "Метод: " << method.name << endl;
+	auto time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+	out << "Время работы: " << time.count() << " мс" << endl;
+	out << "    " << endl;
+	out << table.info() << endl;
+	out << "        " << endl;
+
+#if (OUTTYPE == File)
+	out.close();
+#endif
+}
+
+
+template<typename T>
 void step1(int n, T dt)//часть 1 - решение обоих уравнений тремя методами
 {
 	for (int i = 0; i < 2; i++)//по всем уравнениям
 	{
-		auto ur = functions<T>[i];
+		//auto ur = functions<T>[i];
 		for (auto j = 0; j < 3; j++)//по всем методам
 		{
 #if DEBUG
 			try
 			{
 #endif
+//				auto &method = methods<T>[j];
+//
+//#if (OUTTYPE == File)
+//
+//				string s = "step1_ur" + std::to_string(i + 1) + "method_" + method.name + ".txt";
+//				ofstream out;
+//				out.open(s);
+//
+//#else
+//				ostream &out = cout;
+//#endif
+//				auto start = chrono::steady_clock::now();
+//				auto table = method.method(n, dt, ur);
+//				auto end = chrono::steady_clock::now();
+//				out << "Уравнение " << i << endl;
+//				out << "Метод: " << method.name << endl;
+//				auto time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+//				out << "Время работы: " << time.count() << " мс" << endl;
+//				out << "    " << endl;
+//				out << table.info() << endl;
+//				out << "        " << endl;
+//
+//#if (OUTTYPE == File)
+//				out.close();
+//#endif
 
-
-#if (OUTTYPE == File)
-
-				string s = "step1_ur" + std::to_string(i + 1) + "method_" + methods<T>[j].name + ".txt";
-				ofstream out;
-				out.open(s);
-
-#else
-				ostream &out = cout;
-#endif
-				auto &method = methods<T>[j].method;
-				auto start = chrono::steady_clock::now();
-				auto table = method(n, dt, ur);
-				auto end = chrono::steady_clock::now();
-				out << "Уравнение " << i << endl;
-				out << "Метод: " << methods<T>[j].name << endl;
-				auto time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-				out << "Время работы: " << time.count() << " мс" << endl;
-				out << "    " << endl;
-				out << table.info() << endl;
-				out << "        " << endl;
-
-#if (OUTTYPE == File)
-				out.close();
-#endif
+				SolveAndPrint(n, dt, i, methods<T>[j]);
 
 #if DEBUG
 		}
@@ -148,13 +179,11 @@ int main()
 #if DEBUG
 	auto start = chrono::steady_clock::now();
 #endif
-	int n = 1000;
-	cout << "Variant " << VARIANT << endl;
-	cout << "User " << UserName << endl;
-	cout << "step 1" << endl;
-	step1(n, 1E-3);
-	cout << endl << "step 2" << endl;
-	step2(n);
+
+	int ur = 0;
+	for (int i = 0; i < 5; i++)
+		SolveAndPrint<double>(1000, 0.1, ur, AllMethods<double>[i]);
+
 #if DEBUG
 	cout << "ready" << endl;
 	auto end = chrono::steady_clock::now();
@@ -163,4 +192,15 @@ int main()
 #endif
 	system("pause");
 	return 0;
+}
+
+void old_main()
+{
+	int n = 1000;
+	cout << "Variant " << VARIANT << endl;
+	cout << "User " << UserName << endl;
+	cout << "step 1" << endl;
+	step1(n, 1E-3);
+	cout << endl << "step 2" << endl;
+	step2(n);
 }
