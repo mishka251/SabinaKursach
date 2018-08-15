@@ -2,7 +2,7 @@
 #include<string>
 #include<functional>
 //все варианты методов для вариантов 9 и 10
-
+//тут только функции
 
 
 //метод средних скоростей = метод полушага
@@ -89,10 +89,10 @@ function_table<double, T, T> pred_corr(int n, T dt, function<T(T, T)> f)
 		T pred;
 		do
 		{
-		 pred = x_prev + 2 * v*dt;//predictor
-		a_next = f(pred, v);
-		v_next = v+ (a_next + a)*dt / 2.0;
-		x_next = x + dt * (v_next + v) / 2.0;
+			pred = x_prev + 2 * v*dt;//predictor
+			a_next = f(pred, v);
+			v_next = v + (a_next + a)*dt / 2.0;
+			x_next = x + dt * (v_next + v) / 2.0;
 		} while (abs(x_next - pred) > dt);
 
 

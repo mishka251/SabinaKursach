@@ -25,7 +25,6 @@ public:
 
 	void add_vals(t_type t, x_type x, v_type v)
 	{
-
 		table.insert(make_pair(t, make_pair(x, v)));
 	}
 	string info()
@@ -52,7 +51,7 @@ public:
 		ss << endl << "End table" << endl << endl;
 		return ss.str();
 	}
-
+	//для вывода через потоки
 	friend ostream operator<<(ostream& ost, const function_table &table);
 	friend ofstream operator<<(ofstream& ost, const function_table &table);
 };

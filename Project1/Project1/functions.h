@@ -12,6 +12,6 @@ T a2(T x, T v)
 {
 	return w1 * w1 * x;
 }
-
+//массив уравнений
 template < typename T>
 std::function<T(T, T)> functions[] = { a1<T>, a2<T> };

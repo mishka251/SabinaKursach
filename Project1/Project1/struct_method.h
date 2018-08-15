@@ -3,7 +3,7 @@
 #include"AllMethods.h"
 
 template<typename T>
-struct Method
+struct Method//метод 0 функция с названием
 {
 	std::string name;
 	std::function< function_table<double, T, T>(int n, T dt, function<T(T, T)> f)>  method;
@@ -13,6 +13,7 @@ struct Method
 		this->method = func;
 	}
 };
+//все методы
 template<typename T>
 Method<T> AllMethods[] =
 {
